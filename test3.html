@@ -1,0 +1,51 @@
+<!-- Q1 2 and 3 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id ="list"></ul>
+    <button id ="myButton">Click</button>
+    <button id ="clearButton">clear Button</button>
+    <script>
+    function addListItem() {
+    let ul = document.getElementById("list");
+    let li = document.createElement("li");
+    li.textContent = "New List Item";
+    ul.appendChild(li);
+
+    
+    let items = JSON.parse(localStorage.getItem("listItems")) || [];
+    items.push("New List Item");
+    localStorage.setItem("listItems", JSON.stringify(items));
+}
+
+
+window.onload = function () {
+    let ul = document.getElementById("list");
+    let items = JSON.parse(localStorage.getItem("listItems")) || [];
+    items.forEach(item => {
+        let li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+    });
+};
+
+
+document.getElementById("myButton").addEventListener("click", function () {
+    alert("Button clicked!");
+});
+
+document.getElementById("clearButton").addEventListener("click", function () {
+    localStorage.removeItem("clickCount");
+    alert("Click count reset!");
+});
+
+
+    </script>
+</body>
+</html>
